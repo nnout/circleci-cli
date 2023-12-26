@@ -78,3 +78,11 @@ jobs:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }} # Remove publish-profile to use Azure RBAC
+        
+    # Begin AppMap bootstrap archive step
+    - name: Archive AppMaps
+      id: appmap-bootstrap-archive-appmaps
+      uses: getappmap/archive-action@v1
+      with:
+        revision: ${{ github.event.pull_request.base.sha }}
+    # End AppMap bootstrap archive step
